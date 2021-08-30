@@ -2,6 +2,9 @@ library(Seurat)
 library(SeuratData)
 library(patchwork)
 
+library('scater')
+library('scran')
+
 LoadData("bmcite")
 
 bmcite
@@ -44,6 +47,8 @@ cell.dat
 ### Feat selection
 
 dec <- scran::modelGeneVar(Matrix::t(cell.dat@data$RNA_logNorm))
+dec
+
 hvg <- scran::getTopHVGs(dec, prop=0.1)
 hvg
 
@@ -60,7 +65,6 @@ cell.dat
 cell.dat <- sc.run.umap(cell.dat, 'PCA', slot = 'analysis')
 cell.dat
 
-cell.dat@
 
 
 
